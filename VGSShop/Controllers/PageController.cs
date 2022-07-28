@@ -9,11 +9,11 @@ using VGSShop.Models;
 
 namespace VGSShop.Controllers
 {
-    public class PageController : Controller
+    public class pageController : Controller
     {
         private readonly VGSShopContext _context;
         public INotyfService _notyfService { get; }
-        public PageController(VGSShopContext context, INotyfService notyfService)
+        public pageController(VGSShopContext context, INotyfService notyfService)
         {
             _context = context;
             _notyfService = notyfService;
@@ -22,11 +22,11 @@ namespace VGSShop.Controllers
         [Route("/page/{Alias}", Name = "PageDetails")]
         public IActionResult Details(string Alias)
         {
-            if (string.IsNullOrEmpty(Alias)) return RedirectToAction("Index", "Home");
+            if (string.IsNullOrEmpty(Alias)) return redirectToAction("Index", "Home");
             var page = _context.Pages.AsNoTracking().SingleOrDefault(x => x.Alias == Alias);
             if (page == null)
             {
-                return RedirectToAction("Index", "Home");
+                return redirectToAction("Index", "Home");
             }
             return View(page);
         }
