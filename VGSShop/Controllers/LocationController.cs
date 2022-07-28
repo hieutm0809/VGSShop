@@ -21,21 +21,21 @@ namespace VGSShop.Controllers
         {
             return View();
         }
-        public ActionResult DistrictList(int LocationId)
+        public ActionResult districtList(int LocationId)
         {
-            var District = _context.Locations.OrderBy(x => x.LocationId)
+            var district = _context.Locations.OrderBy(x => x.LocationId)
                 .Where(x => x.ParentCode == LocationId && x.Levels == 2)
                 .OrderBy(x => x.Name)
                 .ToList();
-            return Json(District);
+            return Json(district);
         }
-        public ActionResult SubDistrictList(int LocationId)
+        public ActionResult wardList(int LocationId)
         {
-            var subDistrict = _context.Locations.OrderBy(x => x.LocationId)
+            var ward = _context.Locations.OrderBy(x => x.LocationId)
                 .Where(x => x.ParentCode == LocationId && x.Levels == 3)
                 .OrderBy(x => x.Name)
                 .ToList();
-            return Json(subDistrict);
+            return Json(ward);
         }
     }
 }
